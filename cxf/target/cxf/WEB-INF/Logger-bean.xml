@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xsi:schemaLocation="  http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd  http://cxf.apache.org/jaxrs  http://cxf.apache.org/schemas/jaxrs.xsd  http://cxf.apache.org/jaxws  http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+
+	<bean id="loggerConstants" class="com.ecomm.commonutility.logger.LoggerConstants">
+		<constructor-arg value="350" type="int"/>
+		<constructor-arg value="-" type="java.lang.String"/>
+		<constructor-arg value="ENTERING - " type="java.lang.String"/>
+		<constructor-arg value="LEAVING - " type="java.lang.String"/>
+		<constructor-arg value="ERROR - " type="java.lang.String"/>
+	</bean>
+
+	<bean id="ecommlogger" class="com.ecomm.commonutility.logger.EcommLogger">
+		<property name="propertiesFilePath" value="C:\\Users\\dell\\Downloads\\cxf\\src\\main\\java\\com\\ecomm\\commonutility\\logger\\log4j.properties" />
+	</bean>
+	
+</beans>
