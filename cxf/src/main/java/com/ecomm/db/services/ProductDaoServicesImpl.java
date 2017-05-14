@@ -30,19 +30,27 @@ public class ProductDaoServicesImpl {
 		this.productDAO = productDAO;
 	}
 	
-	
-	/**
-	 * PROPAGATION & ISOLATION STRATEGY & XML NEEDS TO BE UPDATED... 
-	 * NOT DONE YET!!!
-	 * */
-	
 	@Transactional
 	public List<Product> listAllProducts() throws EcommException {
-		return productDAO.listAllProducts();
+		try{
+			return productDAO.listAllProducts();
+		}catch(Exception e){
+			throw new EcommException(500, e);
+		}
 	}
 
 	@Transactional
 	public Product listProductsById(String id) throws EcommException {
-		return productDAO.listProductById(id);
+		try{
+			Product product =  productDAO.listProductById(id);
+			if(product == null){
+				throw new EcommException(404, "No Product found with id: "+id);
+			}
+			return product;
+		}catch(EcommException e){
+			throw e;
+		}catch(Exception e){
+			throw new EcommException(500, e);
+		}
 	}
 }

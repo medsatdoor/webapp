@@ -15,51 +15,23 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductDAOImpl implements ProductDAO {
 	
 	//private static Session session = DatabaseSessionManager.getDatabaseSession();
+	
 	public List<Product> listAllProducts() throws EcommException {
-		Session session = DatabaseSessionManager.getDatabaseSession();
-		try{
-			return session.createQuery("from Product").list();
-		}catch(Exception e){
-			throw new EcommException(500, e);
-		}
+		return DatabaseSessionManager.getDatabaseSession().createQuery("from Product").list();
 	}
 
 	public Product listProductById(String id) throws EcommException{
-		Session session = DatabaseSessionManager.getDatabaseSession();
-		try{
-			Product product = (Product)session.get(Product.class, id); 
-			EcommLogger.info("id:"+id+", product: "+product);
-			if(product == null){
-				throw new EcommException(404, "product id not found: "+id+" DAO Hibernate error!!!!");
-			}
-			return product;
-		}catch(EcommException e){
-			throw e;
-		}catch(Exception e){
-			throw new EcommException(500, e);
-		}
+		return (Product)DatabaseSessionManager.getDatabaseSession().get(Product.class, id);
 	}
 
 	public Product addProduct(Product product) throws EcommException{
-		try{
-			
-			return null;
-		}catch(Exception e){
-			throw new EcommException(500, e);
-		}
+		return null;
 	}
 	
 	public void updateProduct(Product product) throws EcommException {
-		try{
-		}catch(Exception e){
-			throw new EcommException(500, e);
-		}
 	}
 	
 	public void deleteProduct(Product product) throws EcommException {
-		try{
-		}catch(Exception e){
-			throw new EcommException(500, e);
-		}
+
 	}
 }
