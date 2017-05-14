@@ -32,7 +32,9 @@ public class DatabaseSessionManager {
     }
 	
 	// Application can get only the access to the session resource
+	// Application should not create their own session,
+	// instead should use the current contextual session
 	public static Session getDatabaseSession(){
-		return sessionFactory.openSession();
+		return sessionFactory.getCurrentSession();
 	}
 }

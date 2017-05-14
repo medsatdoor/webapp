@@ -8,7 +8,6 @@ import org.dozer.Mapper;
 
 import com.ecomm.commonutility.logger.EcommLogger;
 import com.ecomm.dao.ProductDAO;
-import com.ecomm.db.services.ProductDaoServices;
 import com.ecomm.db.services.ProductDaoServicesImpl;
 import com.ecomm.exception.EcommException;
 import com.ecomm.exception.EcommWebException;

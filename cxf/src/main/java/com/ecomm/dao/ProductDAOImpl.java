@@ -20,8 +20,6 @@ public class ProductDAOImpl implements ProductDAO {
 			return session.createQuery("from Product").list();
 		}catch(Exception e){
 			throw new EcommException(500, e);
-		}finally{
-			session.close();
 		}
 	}
 
@@ -38,13 +36,14 @@ public class ProductDAOImpl implements ProductDAO {
 			throw e;
 		}catch(Exception e){
 			throw new EcommException(500, e);
-		}finally{
-			session.close();
 		}
 	}
 
 	public Product addProduct(Product product) throws EcommException{
+		Session session = DatabaseSessionManager.getDatabaseSession();
 		try{
+			Transaction transaction = session.beginTransaction();
+			
 			return null;
 		}catch(Exception e){
 			throw new EcommException(500, e);
@@ -52,6 +51,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	public void updateProduct(Product product) throws EcommException {
+		Session session = DatabaseSessionManager.getDatabaseSession();
 		try{
 		}catch(Exception e){
 			throw new EcommException(500, e);
@@ -59,6 +59,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	public void deleteProduct(Product product) throws EcommException {
+		Session session = DatabaseSessionManager.getDatabaseSession();
 		try{
 		}catch(Exception e){
 			throw new EcommException(500, e);
