@@ -1,20 +1,26 @@
 package com.ecomm.dao;
 
 import java.util.List;
+
+import org.hibernate.Session;
+
+import com.ecomm.dao.utils.DatabaseSessionManager;
 import com.ecomm.dbentity.Product;
 import com.ecomm.exception.EcommException;
 
 
 public interface ProductDAO {
 	
-	List<Product> listAllProducts() throws EcommException;
+	List<Product> listAllProducts();
+
+	Product listProductById(String id);
+
+	Product addProduct(Product product);
 	
-	Product listProductById(String id) throws EcommException;
+	Product updateProduct(Product product);
 	
-	Product addProduct(Product product) throws EcommException;
+	Product addOrUpdateProduct(Product product);
 	
-	void updateProduct(Product product) throws EcommException;
-	
-	void deleteProduct(Product product) throws EcommException;
+	void deleteProduct(Product product);
 
 }

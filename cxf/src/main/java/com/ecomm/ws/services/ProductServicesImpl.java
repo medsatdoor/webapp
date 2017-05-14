@@ -3,6 +3,10 @@ package com.ecomm.ws.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.DELETE;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
@@ -72,8 +76,7 @@ public class ProductServicesImpl implements ProductServices {
 				throw new EcommWebException(404, "Product id: "+id+" was not found");
 			}
 			com.ecomm.wsentity.Product wsproduct = new Product();
-			wsproduct = mapDbToWs(dbproduct);
-			return wsproduct;
+			return mapDbToWs(dbproduct);
 		}catch (EcommException e) {
 			e.printStackTrace();
 			throw new EcommWebException(e);
@@ -82,5 +85,30 @@ public class ProductServicesImpl implements ProductServices {
 			throw new EcommWebException(500, e);
 		}
 	}
+	
+	public Product addProduct(Product wsproduct){
+		try{
+			com.ecomm.dbentity.Product dbproduct = productDaoServices.addProduct(mapWsToDb(wsproduct));
+			return mapDbToWs(dbproduct);
+		}catch (EcommException e) {
+			e.printStackTrace();
+			throw new EcommWebException(e);
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new EcommWebException(500, e);
+		}
+	}
+	
+	public Product updateProduct(Product product){
+		return null;
+	}
+	
+	public Product addOrUpdateProduct(Product product){
+		return null;
+	}
+	
+	public void deleteProduct(Product product){}
+	
+	public void deleteProductById(String id){}
 
 }

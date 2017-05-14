@@ -16,22 +16,33 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	//private static Session session = DatabaseSessionManager.getDatabaseSession();
 	
-	public List<Product> listAllProducts() throws EcommException {
+	public List<Product> listAllProducts() {
 		return DatabaseSessionManager.getDatabaseSession().createQuery("from Product").list();
 	}
 
-	public Product listProductById(String id) throws EcommException{
+	public Product listProductById(String id) {
 		return (Product)DatabaseSessionManager.getDatabaseSession().get(Product.class, id);
 	}
 
-	public Product addProduct(Product product) throws EcommException{
-		return null;
+	public Product addProduct(Product product) {
+		Session session = DatabaseSessionManager.getDatabaseSession();
+		String id = (String)session.save(product);
+		return (Product)session.get(Product.class, id);
 	}
 	
-	public void updateProduct(Product product) throws EcommException {
+	public Product updateProduct(Product product) {
+		Session session = DatabaseSessionManager.getDatabaseSession();
+		session.update(product);
+		return (Product)session.get(Product.class, product.getId());
 	}
 	
-	public void deleteProduct(Product product) throws EcommException {
-
+	public Product addOrUpdateProduct(Product product) {
+		Session session = DatabaseSessionManager.getDatabaseSession();
+		session.saveOrUpdate(product);
+		return (Product)session.get(Product.class, product.getId());
+	}
+	
+	public void deleteProduct(Product product) {
+		DatabaseSessionManager.getDatabaseSession().delete(product);
 	}
 }

@@ -2,9 +2,11 @@ package com.ecomm.db.services;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ecomm.dao.ProductDAO;
+import com.ecomm.dao.utils.DatabaseSessionManager;
 import com.ecomm.dbentity.Product;
 import com.ecomm.exception.EcommException;
 
@@ -52,5 +54,53 @@ public class ProductDaoServicesImpl {
 		}catch(Exception e){
 			throw new EcommException(500, e);
 		}
+	}
+
+	@Transactional
+	public Product addProduct(Product product) throws EcommException{
+		try{
+			return productDAO.addProduct(product);
+		}catch(Exception e){
+			throw new EcommException(500, e);
+		}
+	}
+	
+	@Transactional
+	public Product updateProduct(Product product) throws EcommException{
+		try{
+			return productDAO.updateProduct(product);
+		}catch(Exception e){
+			throw new EcommException(500, e);
+		}
+	}
+	
+	@Transactional
+	public Product addOrUpdateProduct(Product product) throws EcommException{
+		try{
+			return productDAO.addOrUpdateProduct(product);
+		}catch(Exception e){
+			throw new EcommException(500, e);
+		}
+	}
+	
+	@Transactional
+	public void deleteProduct(Product product) throws EcommException{
+		try{
+			productDAO.deleteProduct(product);
+		}catch(Exception e){
+			throw new EcommException(500, e);
+		}	
+	}
+	
+	// Adding reusable multi-steped services 
+	
+	@Transactional
+	public void deleteProductById(String id) throws EcommException{
+		try{
+			Product product = productDAO.listProductById(id);
+			productDAO.deleteProduct(product);
+		}catch(Exception e){
+			throw new EcommException(500, e);
+		}	
 	}
 }
