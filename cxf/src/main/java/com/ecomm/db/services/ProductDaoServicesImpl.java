@@ -92,6 +92,15 @@ public class ProductDaoServicesImpl {
 		}	
 	}
 	
+	@Transactional
+	public void deleteAllProducts() throws EcommException {
+		try{
+			productDAO.deleteAllProducts();
+		}catch(Exception e){
+			throw new EcommException(500, e);
+		}
+	}
+	
 	// Adding reusable multi-steped services 
 	
 	@Transactional
@@ -103,4 +112,6 @@ public class ProductDaoServicesImpl {
 			throw new EcommException(500, e);
 		}	
 	}
+
+	
 }

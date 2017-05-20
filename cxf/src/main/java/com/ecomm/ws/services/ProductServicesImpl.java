@@ -26,6 +26,7 @@ import com.ecomm.wsentity.Products;
 public class ProductServicesImpl implements ProductServices {
 
 	private ProductDaoServicesImpl productDaoServices;
+	
 	private String dozerMappingFilePath = "dozer-bean-mapping.xml";
 
 	public void setProductDaoServices(ProductDaoServicesImpl productDaoServices) {
@@ -71,10 +72,10 @@ public class ProductServicesImpl implements ProductServices {
 	}
 
 	public Response listProductsById(final String id) {
+		if (id == null) {
+			throw new EcommWebException(404, "Product id = null");
+		}
 		try {
-			if (id == null) {
-				throw new EcommWebException(404, "Product id = null");
-			}
 			com.ecomm.dbentity.Product dbproduct = productDaoServices.listProductsById(id);
 			if (dbproduct == null) {
 				throw new EcommWebException(404, "Product id: "+id+" was not found");
@@ -91,6 +92,9 @@ public class ProductServicesImpl implements ProductServices {
 	}
 	
 	public Response addProduct(Product wsproduct, UriInfo uriInfo){
+		if(wsproduct.getId() != null){
+			throw new EcommWebException(400, "INVALID PRODUCT ID: is system generated should be null");
+		}
 		try{
 			com.ecomm.dbentity.Product dbproduct = productDaoServices.addProduct(mapWsToDb(wsproduct));
 			com.ecomm.wsentity.Product wsCreatedProduct = mapDbToWs(dbproduct);
@@ -104,16 +108,65 @@ public class ProductServicesImpl implements ProductServices {
 		}
 	}
 	
-	public Product updateProduct(Product product, UriInfo uriInfo){
-		return null;
+	public Response updateProduct(Product wsproduct, UriInfo uriInfo){
+		if (wsproduct.getId() == null) {
+			throw new EcommWebException(400, "INVALID PRODUCT ID = null");
+		}
+		try{
+			com.ecomm.dbentity.Product dbproduct = productDaoServices.updateProduct(mapWsToDb(wsproduct));
+			return EcommResponse.getResponseUpdated(mapDbToWs(dbproduct), uriInfo);
+		}catch (EcommException e) {
+			e.printStackTrace();
+			throw new EcommWebException(e);
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new EcommWebException(500, e);
+		}
 	}
 	
-	public Product addOrUpdateProduct(Product product, UriInfo uriInfo){
-		return null;
+	public Response deleteProduct(Product wsproduct){
+		if (wsproduct.getId() == null) {
+			throw new EcommWebException(400, "INVALID PRODUCT ID = null");
+		}
+		try{	
+			productDaoServices.deleteProduct(mapWsToDb(wsproduct));
+			return EcommResponse.getResponseNoContent();
+		}catch (EcommException e) {
+			e.printStackTrace();
+			throw new EcommWebException(e);
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new EcommWebException(500, e);
+		}
 	}
 	
-	public void deleteProduct(Product product, UriInfo uriInfo){}
-	
-	public void deleteProductById(String id, UriInfo uriInfo){}
-	
+	public Response deleteProductById(String id){
+		if (id == null) {
+			throw new EcommWebException(400, "INVALID PRODUCT ID = null");
+		}
+		try{
+			productDaoServices.deleteProductById(id);
+			return EcommResponse.getResponseNoContent();
+		}catch (EcommException e) {
+			e.printStackTrace();
+			throw new EcommWebException(e);
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new EcommWebException(500, e);
+		}
+	}
+
+	public Response deleteAllProducts() {
+		try{
+			productDaoServices.deleteAllProducts();
+			return EcommResponse.getResponseNoContent();
+		}catch (EcommException e) {
+			e.printStackTrace();
+			throw new EcommWebException(e);
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new EcommWebException(500, e);
+		}
+	}
+
 }

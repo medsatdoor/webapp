@@ -23,4 +23,6 @@ public interface ProductDAO {
 	
 	void deleteProduct(Product product);
 
+	void deleteAllProducts();
+
 }

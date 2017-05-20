@@ -42,15 +42,21 @@ public interface ProductServices {
 	public Response addProduct(Product product, @Context UriInfo uriInfo);
 	
 	@PUT
-	public Product updateProduct(Product product, @Context UriInfo uriInfo);
-	
-	@POST
-	public Product addOrUpdateProduct(Product product, @Context UriInfo uriInfo);
+	@Path("/products/")
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_XML})
+	public Response updateProduct(Product product, @Context UriInfo uriInfo);
+		
+	@DELETE
+	@Path("/products/")
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public Response deleteProduct(Product product);
 	
 	@DELETE
-	public void deleteProduct(Product product, @Context UriInfo uriInfo);
-	
-	@DELETE
-	public void deleteProductById(String id, @Context UriInfo uriInfo);
+	@Path("/products/{id}")
+	public Response deleteProductById(@PathParam("id") String id);
 
+	@DELETE
+	@Path("/products/all")
+	public Response deleteAllProducts();
 }

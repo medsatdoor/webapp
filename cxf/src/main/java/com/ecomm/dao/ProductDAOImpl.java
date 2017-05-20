@@ -9,8 +9,7 @@ import com.ecomm.dbentity.Product;
 import com.ecomm.exception.EcommException;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.springframework.transaction.annotation.Transactional;
+
 
 public class ProductDAOImpl implements ProductDAO {
 	
@@ -44,5 +43,9 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	public void deleteProduct(Product product) {
 		DatabaseSessionManager.getDatabaseSession().delete(product);
+	}
+
+	public void deleteAllProducts() {
+		DatabaseSessionManager.getDatabaseSession().createQuery("delete from Product").executeUpdate();
 	}
 }
