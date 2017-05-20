@@ -6,6 +6,9 @@ import java.util.List;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -15,7 +18,9 @@ import com.ecomm.dao.ProductDAO;
 import com.ecomm.db.services.ProductDaoServicesImpl;
 import com.ecomm.exception.EcommException;
 import com.ecomm.exception.EcommWebException;
+import com.ecomm.ws.utils.EcommResponse;
 import com.ecomm.wsentity.Product;
+import com.ecomm.wsentity.Products;
 
 
 public class ProductServicesImpl implements ProductServices {
@@ -45,18 +50,17 @@ public class ProductServicesImpl implements ProductServices {
 		return wsproduct;
 	}
 
-	public List<com.ecomm.wsentity.Product> listAllProducts() {
+	public Response listAllProducts() {
 		try{ 
-			EcommLogger.info("create product service posted...");
 			List<com.ecomm.dbentity.Product> dbproductList = productDaoServices.listAllProducts();
 			EcommLogger.info("FROM DAO: "+dbproductList);
-			List<com.ecomm.wsentity.Product> wsproductList = new ArrayList<Product>();
+			Products wsproducts = new Products();
 			if(dbproductList!=null && !dbproductList.isEmpty()){
 				for (com.ecomm.dbentity.Product dbproduct : dbproductList) {
-					wsproductList.add(mapDbToWs(dbproduct));
+					wsproducts.addProduct(mapDbToWs(dbproduct));
 				}
 			}	
-			return wsproductList;
+			return EcommResponse.getResponseOk(wsproducts);
 		}catch (EcommException e) {
 			e.printStackTrace();
 			throw new EcommWebException(e);
@@ -66,7 +70,7 @@ public class ProductServicesImpl implements ProductServices {
 		}
 	}
 
-	public com.ecomm.wsentity.Product listProductsById(final String id) {
+	public Response listProductsById(final String id) {
 		try {
 			if (id == null) {
 				throw new EcommWebException(404, "Product id = null");
@@ -75,8 +79,8 @@ public class ProductServicesImpl implements ProductServices {
 			if (dbproduct == null) {
 				throw new EcommWebException(404, "Product id: "+id+" was not found");
 			}
-			com.ecomm.wsentity.Product wsproduct = new Product();
-			return mapDbToWs(dbproduct);
+			com.ecomm.wsentity.Product wsproduct = mapDbToWs(dbproduct);
+			return EcommResponse.getResponseOk(wsproduct);
 		}catch (EcommException e) {
 			e.printStackTrace();
 			throw new EcommWebException(e);
@@ -86,10 +90,11 @@ public class ProductServicesImpl implements ProductServices {
 		}
 	}
 	
-	public Product addProduct(Product wsproduct){
+	public Response addProduct(Product wsproduct, UriInfo uriInfo){
 		try{
 			com.ecomm.dbentity.Product dbproduct = productDaoServices.addProduct(mapWsToDb(wsproduct));
-			return mapDbToWs(dbproduct);
+			com.ecomm.wsentity.Product wsCreatedProduct = mapDbToWs(dbproduct);
+			return EcommResponse.getResponseCreated(wsCreatedProduct, uriInfo);
 		}catch (EcommException e) {
 			e.printStackTrace();
 			throw new EcommWebException(e);
@@ -99,16 +104,16 @@ public class ProductServicesImpl implements ProductServices {
 		}
 	}
 	
-	public Product updateProduct(Product product){
+	public Product updateProduct(Product product, UriInfo uriInfo){
 		return null;
 	}
 	
-	public Product addOrUpdateProduct(Product product){
+	public Product addOrUpdateProduct(Product product, UriInfo uriInfo){
 		return null;
 	}
 	
-	public void deleteProduct(Product product){}
+	public void deleteProduct(Product product, UriInfo uriInfo){}
 	
-	public void deleteProductById(String id){}
-
+	public void deleteProductById(String id, UriInfo uriInfo){}
+	
 }

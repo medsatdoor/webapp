@@ -34,7 +34,7 @@
 		<url-pattern>/services/*</url-pattern>
 	</servlet-mapping>
 
-	<!-- ENABLE SSL -->
+	<!-- ENABLE SSL
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>cxf</web-resource-name>
@@ -44,14 +44,14 @@
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
-
-	<!-- SEND COOKIE OVER SSL -->
+ -->
+	<!-- SEND COOKIE OVER SSL 
 	<session-config>
 		<cookie-config>
 			<secure>true</secure>
 		</cookie-config>
 	</session-config>
-
+-->
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
