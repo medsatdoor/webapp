@@ -44,4 +44,8 @@ public class EcommResponse {
 		return Response.status(Status.ACCEPTED).entity(wsentity)
 			.header("Location", getLocationUri(wsentity, uriInfo)).build();
 	}
+
+	public static Response getResponseOk() {
+		return Response.ok().build();
+	}
 }

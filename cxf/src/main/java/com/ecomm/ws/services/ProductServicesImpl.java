@@ -169,4 +169,23 @@ public class ProductServicesImpl implements ProductServices {
 		}
 	}
 
+/*	
+	public Response addProducts(Products wsproducts) {
+		try{
+			List<com.ecomm.wsentity.Product> wsproductList = wsproducts.getProductList();
+			List<com.ecomm.dbentity.Product> dbproductList = new ArrayList();
+			for(com.ecomm.wsentity.Product wsproduct : wsproductList){
+				dbproductList.add(mapWsToDb(wsproduct));
+			}
+			productDaoServices.addProductList(dbproductList);
+			return EcommResponse.getResponseOk();
+		}catch (EcommException e) {
+			e.printStackTrace();
+			throw new EcommWebException(e);
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new EcommWebException(500, e);
+		}
+	}
+*/
 }

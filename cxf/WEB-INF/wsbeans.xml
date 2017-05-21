@@ -13,6 +13,10 @@
 
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
+	<bean id="serviceProperties" class="com.ecomm.ws.servicelines.ServiceProperties">
+		<constructor-arg name="serviceProperties" type="java.lang.String" value="service-lines.properties"/>
+	</bean>
+
 	<bean id="productDAO" class="com.ecomm.dao.ProductDAOImpl">
 	</bean>
 

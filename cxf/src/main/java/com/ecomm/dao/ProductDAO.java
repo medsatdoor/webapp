@@ -25,4 +25,6 @@ public interface ProductDAO {
 
 	void deleteAllProducts();
 
+	//void addProductList(List<Product> products);
+
 }

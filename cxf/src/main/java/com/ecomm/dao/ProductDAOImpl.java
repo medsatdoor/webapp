@@ -1,5 +1,6 @@
 package com.ecomm.dao;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	//private static Session session = DatabaseSessionManager.getDatabaseSession();
 	
+	// Operation with single entity
 	public List<Product> listAllProducts() {
 		return DatabaseSessionManager.getDatabaseSession().createQuery("from Product").list();
 	}
@@ -48,4 +50,11 @@ public class ProductDAOImpl implements ProductDAO {
 	public void deleteAllProducts() {
 		DatabaseSessionManager.getDatabaseSession().createQuery("delete from Product").executeUpdate();
 	}
+	
+	// Bulk operation with multiple entities
+/*	public void addProductList(List<Product> products) {
+		Session session = DatabaseSessionManager.getDatabaseSession();
+		session.createQuery("");
+	}
+*/	
 }

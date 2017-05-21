@@ -113,5 +113,14 @@ public class ProductDaoServicesImpl {
 		}	
 	}
 
-	
+	// Bulk operations
+/*	@Transactional
+	public void addProductList(List<Product> products) throws EcommException {
+		try{
+			productDAO.addProductList(products);
+		}catch(Exception e){
+			throw new EcommException(500, e);
+		}
+	}
+*/
 }
