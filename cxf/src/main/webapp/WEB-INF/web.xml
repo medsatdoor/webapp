@@ -9,6 +9,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
+			/WEB-INF/Mail-bean.xml,
 			/WEB-INF/Logger-bean.xml,
 			/WEB-INF/dbbeans.xml,
 			/WEB-INF/wsbeans.xml

@@ -14,6 +14,7 @@ import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
 import com.ecomm.commonutility.logger.EcommLogger;
+import com.ecomm.commonutility.mailer.MailUtils;
 import com.ecomm.dao.ProductDAO;
 import com.ecomm.db.services.ProductDaoServicesImpl;
 import com.ecomm.exception.EcommException;
@@ -61,6 +62,7 @@ public class ProductServicesImpl implements ProductServices {
 					wsproducts.addProduct(mapDbToWs(dbproduct));
 				}
 			}	
+			MailUtils.sendMail("Subject", "message", "fdtapan349paul@gmail.com", "fdtapan349paul@gmail.com");
 			return EcommResponse.getResponseOk(wsproducts);
 		}catch (EcommException e) {
 			e.printStackTrace();
