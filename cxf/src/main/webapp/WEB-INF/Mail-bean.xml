@@ -7,8 +7,8 @@
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 
 	<bean id="mailUtils" class="com.ecomm.commonutility.mailer.MailUtils">
-		<constructor-arg type="java.lang.String" value="group@gmail.com" />
-		<constructor-arg type="java.lang.String" value="sender's account-password" />
+		<constructor-arg type="java.lang.String" value="sender@gmail.com" />
+		<constructor-arg type="java.lang.String" value="sender-password" />
 		<constructor-arg type="java.util.Properties">
 			<props>
 				<prop key="mail.smtp.auth">true</prop>
