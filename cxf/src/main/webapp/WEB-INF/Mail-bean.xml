@@ -6,16 +6,17 @@
 
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 
-	<bean id="props" class="java.util.Properties"/>
-
 	<bean id="mailUtils" class="com.ecomm.commonutility.mailer.MailUtils">
-		<constructor-arg type="java.util.Properties" ref="props"/>
-		<constructor-arg type="java.lang.String" value="fdtapan349paul@gmail.com" />
-		<constructor-arg type="java.lang.String" value="newpasswordisiamtapan" />
-		<constructor-arg type="java.lang.String" value="true" />
-		<constructor-arg type="java.lang.String" value="true" />
-		<constructor-arg type="java.lang.String" value="smtp.gmail.com" />
-		<constructor-arg type="java.lang.String" value="587" />	
+		<constructor-arg type="java.lang.String" value="group@gmail.com" />
+		<constructor-arg type="java.lang.String" value="sender's account-password" />
+		<constructor-arg type="java.util.Properties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.host">smtp.gmail.com</prop>
+				<prop key="mail.smtp.port">587</prop>
+			</props>
+		</constructor-arg>	
 	</bean>
 	
 </beans>

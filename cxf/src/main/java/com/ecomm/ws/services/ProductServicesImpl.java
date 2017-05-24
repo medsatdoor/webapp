@@ -62,7 +62,6 @@ public class ProductServicesImpl implements ProductServices {
 					wsproducts.addProduct(mapDbToWs(dbproduct));
 				}
 			}	
-			MailUtils.sendMail("Subject", "message", "fdtapan349paul@gmail.com", "fdtapan349paul@gmail.com");
 			return EcommResponse.getResponseOk(wsproducts);
 		}catch (EcommException e) {
 			e.printStackTrace();

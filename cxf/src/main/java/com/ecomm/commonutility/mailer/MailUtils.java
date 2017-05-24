@@ -30,8 +30,7 @@ public class MailUtils {
 	private static String AUTH_PASSWORD;
 	private static Properties props;
 
-	public MailUtils(Properties props, String AUTH_USER, String AUTH_PASSWORD, String MAIL_SMTP_AUTH, 
-			String MAIL_SMTP_STARTTLS_ENABLE, String MAIL_SMTP_HOST, String MAIL_SMTP_PORT) {
+	public MailUtils(String AUTH_USER, String AUTH_PASSWORD, Properties props) {
 		
 		// set Google authenticated users and passwords 
 		this.AUTH_USER = AUTH_USER;
@@ -39,14 +38,16 @@ public class MailUtils {
 		
 		// set properties of mail transport
 		MailUtils.props = props;
-		props.put("mail.smtp.auth", MAIL_SMTP_AUTH);
-		props.put("mail.smtp.starttls.enable", MAIL_SMTP_STARTTLS_ENABLE);
-		props.put("mail.smtp.host", MAIL_SMTP_HOST);
-		props.put("mail.smtp.port", MAIL_SMTP_PORT);
 	}
 
+	/**
+	 * Try the following : < checked with group@gmail.com as fdtapan349paul@gmail.com >
+	 * MailUtils.sendMail("Subject", "message", "group@gmail.com", "your-mail@gmail.com");
+	 * */
 	public static boolean sendMail(String subject, String msg, String sender, String to) throws Exception {
 
+		EcommLogger.debug("Mail SMTP Properties = "+props);
+		
 		Session session = Session.getInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
@@ -62,20 +63,12 @@ public class MailUtils {
 			message.setSubject(subject);
 			message.setText(msg);
 			Transport.send(message);
-			EcommLogger.info("MAIL SENT...");
+			EcommLogger.info("MAIL SENT TO..."+to);
 			return true;
 		}catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
-
-	/*
-	public static void main(String a[]) throws Exception {
-		SendMail m = new SendMail("fdtapan349paul@gmail.com",
-				"newpasswordisiamtapan");
-		m.sendMail("Subject", "message", "fdtapan349paul@gmail.com",
-				"kaustab.paul93@gmail.com", "fdtapan349paul@gmail.com");
-	}*/
 
 }

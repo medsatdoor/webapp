@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cxf Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	
+
 
 	<dependencies>
 		<!-- APACHE CXF -->
@@ -109,23 +109,13 @@
 			<version>1.5.3</version>
 		</dependency>
 
-		<!-- 
-			JDBC - Licensed from oracle which will create error if added directly to pom.xml 
-			STEPS:
-				1. ADD THE JAR
-				2. OPEN CMD PROMPT AND USE THE FOLLOWING COMMAND: 
-					mvn install:install-file 
-						-Dgroupid=com.oracle -Dartifactid=ojdbc6 
-						-Dpackaging=jar -Dversion=11.2.0.4.0 
-						-Dfile=G:\bkp\ojdbc6.jar -DgeneratePom=true 
-				3. ECLIPSE -> MAVEN-> UPDATE PROJECT
-				4. WINDOWS -> PREFERENCES -> MAVEN -> INSTALLATION
-					-> UNCHECK EMBEDDED -> USE EXTERNAL 
-				5. CHANGE USER SETTINGS TO OWN SETTINGS.XML
-				6. UPDATE PROJECT		
-				
-			REF**** : https://www.youtube.com/watch?v=e90oZYntc5w		
-		-->
+		<!-- JDBC - Licensed from oracle which will create error if added directly 
+			to pom.xml STEPS: 1. ADD THE JAR 2. OPEN CMD PROMPT AND USE THE FOLLOWING 
+			COMMAND: mvn install:install-file -Dgroupid=com.oracle -Dartifactid=ojdbc6 
+			-Dpackaging=jar -Dversion=11.2.0.4.0 -Dfile=G:\bkp\ojdbc6.jar -DgeneratePom=true 
+			3. ECLIPSE -> MAVEN-> UPDATE PROJECT 4. WINDOWS -> PREFERENCES -> MAVEN -> 
+			INSTALLATION -> UNCHECK EMBEDDED -> USE EXTERNAL 5. CHANGE USER SETTINGS 
+			TO OWN SETTINGS.XML 6. UPDATE PROJECT REF**** : https://www.youtube.com/watch?v=e90oZYntc5w -->
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
@@ -170,6 +160,18 @@
 			<version>5.5.1</version>
 		</dependency>
 
+		<!-- MAIL -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 
 		<!-- TEST -->
 		<dependency>
@@ -208,6 +210,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		
+
 	</build>
 </project>
