@@ -2,6 +2,9 @@ package com.ecomm.dao.utils;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
+
+import com.ecomm.commonutility.logger.EcommLogger;
 
 /**
  * ************************************************************************************************************
@@ -37,4 +40,5 @@ public class DatabaseSessionManager {
 	public static Session getDatabaseSession(){
 		return sessionFactory.getCurrentSession();
 	}
+	
 }

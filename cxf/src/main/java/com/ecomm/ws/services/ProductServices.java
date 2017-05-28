@@ -63,11 +63,11 @@ public interface ProductServices {
 	@DELETE
 	@Path(ServicePaths.DELETE_ALL_PRODUCTS)
 	public Response deleteAllProducts();
-/*	
+
 	@POST
-	@Path("/products/list")
+	@Path(ServicePaths.ADD_BULK)
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Produces({MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response addProducts(Products products);
-*/
+
 }

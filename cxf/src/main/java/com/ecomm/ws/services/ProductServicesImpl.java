@@ -16,6 +16,8 @@ import org.dozer.Mapper;
 import com.ecomm.commonutility.logger.EcommLogger;
 import com.ecomm.commonutility.mailer.MailUtils;
 import com.ecomm.dao.ProductDAO;
+import com.ecomm.dao.utils.DatabaseSessionManager;
+import com.ecomm.dao.utils.HibernateProperties;
 import com.ecomm.db.services.ProductDaoServicesImpl;
 import com.ecomm.exception.EcommException;
 import com.ecomm.exception.EcommWebException;
@@ -170,7 +172,6 @@ public class ProductServicesImpl implements ProductServices {
 		}
 	}
 
-/*	
 	public Response addProducts(Products wsproducts) {
 		try{
 			List<com.ecomm.wsentity.Product> wsproductList = wsproducts.getProductList();
@@ -188,5 +189,5 @@ public class ProductServicesImpl implements ProductServices {
 			throw new EcommWebException(500, e);
 		}
 	}
-*/
+
 }

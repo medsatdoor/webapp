@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ecomm.commonutility.logger.EcommLogger;
 import com.ecomm.dao.ProductDAO;
 import com.ecomm.dao.utils.DatabaseSessionManager;
 import com.ecomm.dbentity.Product;
@@ -114,13 +115,14 @@ public class ProductDaoServicesImpl {
 	}
 
 	// Bulk operations
-/*	@Transactional
+	@Transactional
 	public void addProductList(List<Product> products) throws EcommException {
 		try{
-			productDAO.addProductList(products);
+			List<Product> list = productDAO.addProductList(products);
+			EcommLogger.info(list.toString());
 		}catch(Exception e){
 			throw new EcommException(500, e);
 		}
 	}
-*/
+
 }

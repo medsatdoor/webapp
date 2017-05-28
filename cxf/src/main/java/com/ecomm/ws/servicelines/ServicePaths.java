@@ -20,5 +20,6 @@ public interface ServicePaths {
 	String DELETE_PRODUCT 			= 	"/products";
 	String DELETE_PRODUCT_BY_ID 	= 	"/products/{id}";
 	String DELETE_ALL_PRODUCTS 		= 	"/products/all";
+	String ADD_BULK 				=   "/product_bulk/add";
 
 }
