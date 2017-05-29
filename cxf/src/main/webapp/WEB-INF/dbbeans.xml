@@ -33,6 +33,7 @@
 			<list>
 				<value>product.hbm.xml</value>
 				<value>user.hbm.xml</value>
+				<value>plan.hbm.xml</value>
 			</list>
 		</property>
 

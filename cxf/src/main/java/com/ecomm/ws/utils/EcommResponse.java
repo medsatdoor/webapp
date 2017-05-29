@@ -19,14 +19,18 @@ import com.ecomm.wsentity.Product;
 public class EcommResponse {
 
 	// URI builder is not working...
-	private static URI getLocationUri(Object wsentity, UriInfo uriInfo)	throws URISyntaxException { 
+	private static URI getLocationUri(Object wsentity, UriInfo uriInfo)	throws URISyntaxException {
+		String uriPath = String.valueOf(uriInfo.getAbsolutePath());
+		if(!uriPath.endsWith("/")){
+			uriPath += "/";
+		}
 		if (wsentity instanceof com.ecomm.wsentity.Product) {
-			return new URI(String.valueOf(uriInfo.getAbsolutePath())
-					+((com.ecomm.wsentity.Product) wsentity).getId());
+			return new URI(uriPath+((com.ecomm.wsentity.Product) wsentity).getId());
 		}else if (wsentity instanceof com.ecomm.wsentity.User) {
-			return new URI(String.valueOf(uriInfo.getAbsolutePath())
-					+((com.ecomm.wsentity.User) wsentity).getUserId());
-		} 
+			return new URI(uriPath+((com.ecomm.wsentity.User) wsentity).getUserId());
+		}else if (wsentity instanceof com.ecomm.wsentity.Plan) {
+			return new URI(uriPath+((com.ecomm.wsentity.Plan) wsentity).getPlanId());
+		}
 		throw new URISyntaxException(String.valueOf(uriInfo.getAbsolutePath()),
 				"Failed to resolve the instance type of the entity object to build the response");
 	}
@@ -43,7 +47,7 @@ public class EcommResponse {
 		return Response.noContent().build();
 	}
 	
-	public static Response getResponseUpdated(Product wsentity, UriInfo uriInfo) throws URISyntaxException {
+	public static Response getResponseUpdated(Object wsentity, UriInfo uriInfo) throws URISyntaxException {
 		return Response.status(Status.ACCEPTED).entity(wsentity)
 			.header("Location", getLocationUri(wsentity, uriInfo)).build();
 	}

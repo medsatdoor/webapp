@@ -1,5 +1,6 @@
 package com.ecomm.db.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -66,6 +67,29 @@ public class UserDaoServicesImpl {
 			return user;
 		}catch(EcommException e){
 			throw e;
+		}catch(Exception e){
+			throw new EcommException(500, e);
+		}
+	}
+
+	@Transactional
+	public User addUser(User dbuser) throws EcommException {
+		try{
+			dbuser.setNameIndex(dbuser.getName().charAt(0));
+			dbuser.setRegisteredDate(new Date());
+			dbuser.setState("ACTIVE");
+			dbuser.setType("CUSTOMER");
+			dbuser.setBalance(0);
+			return userDAO.addUser(dbuser);
+		}catch(Exception e){
+			throw new EcommException(500, e);
+		}
+	}
+
+	@Transactional
+	public User updateUser(User dbuser) throws EcommException{
+		try{
+			return userDAO.updateUser(dbuser);
 		}catch(Exception e){
 			throw new EcommException(500, e);
 		}

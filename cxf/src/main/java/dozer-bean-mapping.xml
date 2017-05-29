@@ -108,4 +108,21 @@
 		</field>
 	</mapping>
 
+	<mapping map-id="plan_mapping">
+		<class-a>com.ecomm.dbentity.Plan</class-a>
+		<class-b>com.ecomm.wsentity.Plan</class-b>
+		<field>
+			<a>planId</a>
+			<b>planId</b>
+		</field>
+		<field>
+			<a>planName</a>
+			<b>planName</b>
+		</field>
+		<field>
+			<a>description</a>
+			<b>description</b>
+		</field>
+	</mapping>	
+	
 </mappings>

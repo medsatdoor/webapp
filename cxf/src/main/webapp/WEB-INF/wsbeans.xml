@@ -13,6 +13,14 @@
 
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
+	<!-- SERVICE PATH CONSTANTS -->
+	<bean id="servicePathsImpl" class="com.ecomm.ws.servicelines.ServicePathsImpl">
+		<property name="PROTOCOL" value="http"/>
+		<property name="HOST" value="localhost"/>
+		<property name="PORT" value="8280"/>
+		<property name="APPLICATION_CONTEXT" value="/cxf"/>
+		<property name="SERVICE_BASE_URL" value="/services"/>
+	</bean>
 
 	<!-- DOZER MAPPER BEANS -->
 	<bean id="dozerMapper" class="com.ecomm.ws.services.utils.beanmappers.DozerMapper">
@@ -44,11 +52,24 @@
 	</bean>
 	
 	
+	<!-- PLAN BEANS -->		
+	<bean id="planDAO" class="com.ecomm.dao.PlanDAOImpl" />
+
+	<bean id="planDaoServices" class="com.ecomm.db.services.PlanDaoServicesImpl">
+		<property name="planDAO" ref="planDAO" />
+	</bean>
+
+	<bean id="planServices" class="com.ecomm.ws.services.PlanServicesImpl">
+		<property name="planDaoServices" ref="planDaoServices" />
+	</bean>
+	
+	
 	<!-- JAXRS SERVICE ENDPOINT BEANS -->
 	<jaxrs:server id="productService" address="/">
 		<jaxrs:serviceBeans>
 			<ref bean="productServices"/>
 			<ref bean="userServices"/>
+			<ref bean="planServices"/>
 		</jaxrs:serviceBeans>
 	</jaxrs:server>
 
@@ -58,11 +79,11 @@
 		<aop:config>
 			<aop:aspect id="genericMethodAspect" ref="genericAspects">
 				<aop:before method="retrieveMethodOnInvoke"
-					pointcut="execution(* com.ecomm.ws.services.ProductServices.*(..))" />
+					pointcut="execution(* com.ecomm.ws.services.*Services.*(..))" />
 				<aop:after method="leaveMethodAfterInvoke"
-					pointcut="execution(* com.ecomm.ws.services.ProductServices.*(..))" />	
+					pointcut="execution(* com.ecomm.ws.services.*Services.*(..))" />	
 				<aop:after-throwing method="errorListenerOnMethodInvoke" 
-					pointcut="execution(* com.ecomm.ws.services.ProductServices.*(..))" throwing="ex"/>	
+					pointcut="execution(* com.ecomm.ws.services.*Services.*(..))" throwing="ex"/>	
 		</aop:aspect>
 	</aop:config>
 
