@@ -1,4 +1,4 @@
-package com.ecomm.commonutility.property_handler;
+package com.ecomm.commonutility.property;
 
 import java.io.IOException;
 import java.io.InputStream;

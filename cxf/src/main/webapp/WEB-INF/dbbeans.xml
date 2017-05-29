@@ -32,6 +32,7 @@
 		<property name="mappingResources">
 			<list>
 				<value>product.hbm.xml</value>
+				<value>user.hbm.xml</value>
 			</list>
 		</property>
 

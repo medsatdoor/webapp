@@ -13,35 +13,56 @@
 
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
-	<bean id="productDAO" class="com.ecomm.dao.ProductDAOImpl">
+
+	<!-- DOZER MAPPER BEANS -->
+	<bean id="dozerMapper" class="com.ecomm.ws.services.utils.beanmappers.DozerMapper">
+		<constructor-arg type="java.lang.String" value="dozer-bean-mapping.xml"/>	
 	</bean>
+
+
+	<!-- PRODUCT BEANS -->
+	<bean id="productDAO" class="com.ecomm.dao.ProductDAOImpl" />
 
 	<bean id="productDaoServices" class="com.ecomm.db.services.ProductDaoServicesImpl">
 		<property name="productDAO" ref="productDAO" />
 	</bean>
 
-
 	<bean id="productServices" class="com.ecomm.ws.services.ProductServicesImpl">
 		<property name="productDaoServices" ref="productDaoServices" />
 	</bean>
+	
+	
+	<!-- USER BEANS -->		
+	<bean id="userDAO" class="com.ecomm.dao.UserDAOImpl" />
 
+	<bean id="userDaoServices" class="com.ecomm.db.services.UserDaoServicesImpl">
+		<property name="userDAO" ref="userDAO" />
+	</bean>
+
+	<bean id="userServices" class="com.ecomm.ws.services.UserServicesImpl">
+		<property name="userDaoServices" ref="userDaoServices" />
+	</bean>
+	
+	
+	<!-- JAXRS SERVICE ENDPOINT BEANS -->
 	<jaxrs:server id="productService" address="/">
 		<jaxrs:serviceBeans>
-			<ref bean="productServices" />
+			<ref bean="productServices"/>
+			<ref bean="userServices"/>
 		</jaxrs:serviceBeans>
 	</jaxrs:server>
 
 
-
+	<!-- ASPECT BEANS -->
 	<bean name="genericAspects" class="com.ecomm.aspects.GenericMethodAspect" />
-	<aop:config>
-		<aop:aspect id="genericMethodAspect" ref="genericAspects">
-			<aop:before method="retrieveMethodOnInvoke"
-				pointcut="execution(* com.ecomm.ws.services.ProductServices.*(..))" />
-			<aop:after method="leaveMethodAfterInvoke"
-				pointcut="execution(* com.ecomm.ws.services.ProductServices.*(..))" />	
-			<aop:after-throwing method="errorListenerOnMethodInvoke" 
-				pointcut="execution(* com.ecomm.ws.services.ProductServices.*(..))" throwing="ex"/>	
+		<aop:config>
+			<aop:aspect id="genericMethodAspect" ref="genericAspects">
+				<aop:before method="retrieveMethodOnInvoke"
+					pointcut="execution(* com.ecomm.ws.services.ProductServices.*(..))" />
+				<aop:after method="leaveMethodAfterInvoke"
+					pointcut="execution(* com.ecomm.ws.services.ProductServices.*(..))" />	
+				<aop:after-throwing method="errorListenerOnMethodInvoke" 
+					pointcut="execution(* com.ecomm.ws.services.ProductServices.*(..))" throwing="ex"/>	
 		</aop:aspect>
 	</aop:config>
 

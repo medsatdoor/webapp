@@ -23,7 +23,10 @@ public class EcommResponse {
 		if (wsentity instanceof com.ecomm.wsentity.Product) {
 			return new URI(String.valueOf(uriInfo.getAbsolutePath())
 					+((com.ecomm.wsentity.Product) wsentity).getId());
-		}
+		}else if (wsentity instanceof com.ecomm.wsentity.User) {
+			return new URI(String.valueOf(uriInfo.getAbsolutePath())
+					+((com.ecomm.wsentity.User) wsentity).getUserId());
+		} 
 		throw new URISyntaxException(String.valueOf(uriInfo.getAbsolutePath()),
 				"Failed to resolve the instance type of the entity object to build the response");
 	}

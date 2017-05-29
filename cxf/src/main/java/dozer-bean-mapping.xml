@@ -1,66 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mappings xmlns="http://dozer.sourceforge.net"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
- 
-      <mapping map-id="product_mapping">
-        <class-a>com.ecomm.dbentity.Product</class-a>
-        <class-b>com.ecomm.wsentity.Product</class-b>
-        <field>
-            <a>id</a>
-            <b>id</b>
-        </field>
-        <field >
-            <a>name</a>
-            <b>name</b>
-        </field>
-        <field >
-            <a>type</a>
-            <b>type</b>
-        </field>
-        <field >
-            <a>subtype</a>
-            <b>subtype</b>
-        </field>
-        <field >
-            <a>price</a>
-            <b>price</b>
-        </field>
-        <field >
-            <a>company</a>
-            <b>company</b>
-        </field>
-        <field >
-            <a>discount</a>
-            <b>discount</b>
-        </field>
-        <field >
-            <a>rating</a>
-            <b>rating</b>
-        </field>
-        <field >
-            <a>warranty</a>
-            <b>warranty</b>
-        </field>
-        <field >
-            <a>stock</a>
-            <b>stock</b>
-        </field>
-        <field >
-            <a>deliveryTime</a>
-            <b>deliveryTime</b>
-        </field>
-        <field >
-            <a>color</a>
-            <b>color</b>
-        </field>
-        <field >
-            <a>packOf</a>
-            <b>packOf</b>
-        </field>
-        <field >
-            <a>material</a>
-            <b>material</b>
-        </field>
-    </mapping>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping map-id="product_mapping">
+		<class-a>com.ecomm.dbentity.Product</class-a>
+		<class-b>com.ecomm.wsentity.Product</class-b>
+		<field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+		<field>
+			<a>name</a>
+			<b>name</b>
+		</field>
+		<field>
+			<a>type</a>
+			<b>type</b>
+		</field>
+		<field>
+			<a>subtype</a>
+			<b>subtype</b>
+		</field>
+		<field>
+			<a>price</a>
+			<b>price</b>
+		</field>
+		<field>
+			<a>company</a>
+			<b>company</b>
+		</field>
+		<field>
+			<a>discount</a>
+			<b>discount</b>
+		</field>
+		<field>
+			<a>rating</a>
+			<b>rating</b>
+		</field>
+		<field>
+			<a>warranty</a>
+			<b>warranty</b>
+		</field>
+		<field>
+			<a>stock</a>
+			<b>stock</b>
+		</field>
+		<field>
+			<a>deliveryTime</a>
+			<b>deliveryTime</b>
+		</field>
+		<field>
+			<a>color</a>
+			<b>color</b>
+		</field>
+		<field>
+			<a>packOf</a>
+			<b>packOf</b>
+		</field>
+		<field>
+			<a>material</a>
+			<b>material</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="user_mapping">
+		<class-a>com.ecomm.dbentity.User</class-a>
+		<class-b>com.ecomm.wsentity.User</class-b>
+		<field>
+			<a>userId</a>
+			<b>userId</b>
+		</field>
+		<field>
+			<a>emailAddress</a>
+			<b>emailAddress</b>
+		</field>
+		<field>
+			<a>mobileNumber</a>
+			<b>mobileNumber</b>
+		</field>
+		<field>
+			<a>password</a>
+			<b>password</b>
+		</field>
+		<field>
+			<a>nameIndex</a>
+			<b>nameIndex</b>
+		</field>
+		<field>
+			<a>name</a>
+			<b>name</b>
+		</field>
+		<field>
+			<a>type</a>
+			<b>type</b>
+		</field>
+		<field>
+			<a>balance</a>
+			<b>balance</b>
+		</field>
+		<field>
+			<a>state</a>
+			<b>state</b>
+		</field>
+		<field>
+			<a>registeredDate</a>
+			<b>registeredDate</b>
+		</field>
+	</mapping>
+
 </mappings>
