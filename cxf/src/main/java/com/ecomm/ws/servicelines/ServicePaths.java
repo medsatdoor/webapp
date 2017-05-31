@@ -33,4 +33,14 @@ public interface ServicePaths {
 	String DELETE_ALL_PLANS			=	"/plans/all";
 	String ADD_PLANS				=	"/plan-list";
 	
+	// member service path constants
+	String MEMBER_SERVICE_BASE_URI 	= 	"/member-services";
+	String LIST_ALL_MEMBERS	 		= 	"/members";
+	String LIST_MEMBER_BY_ID 		= 	"/members/{memberId}";
+	String ADD_MEMBER				=	"/members";
+	String UPDATE_MEMBER			=	"/members";
+	String DELETE_MEMBER			=	"/members";
+	String DELETE_MEMBER_BY_ID		=	"/members/{memberId}";
+	String DELETE_ALL_MEMBERS		=	"/members/all";
+	String ADD_MEMBERS				=	"/member-list";
 }

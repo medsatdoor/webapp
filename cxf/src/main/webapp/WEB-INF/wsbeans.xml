@@ -63,6 +63,18 @@
 		<property name="planDaoServices" ref="planDaoServices" />
 	</bean>
 	
+
+	<!-- MEMBER BEANS -->		
+	<bean id="memberDAO" class="com.ecomm.dao.MemberDAOImpl" />
+
+	<bean id="memberDaoServices" class="com.ecomm.db.services.MemberDaoServicesImpl">
+		<property name="memberDAO" ref="memberDAO" />
+	</bean>
+
+	<bean id="memberServices" class="com.ecomm.ws.services.MemberServicesImpl">
+		<property name="memberDaoServices" ref="memberDaoServices" />
+	</bean>
+	
 	
 	<!-- JAXRS SERVICE ENDPOINT BEANS -->
 	<jaxrs:server id="productService" address="/">
@@ -70,6 +82,7 @@
 			<ref bean="productServices"/>
 			<ref bean="userServices"/>
 			<ref bean="planServices"/>
+			<ref bean="memberServices"/>
 		</jaxrs:serviceBeans>
 	</jaxrs:server>
 

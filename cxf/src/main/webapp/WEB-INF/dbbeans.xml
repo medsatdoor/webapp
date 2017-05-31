@@ -34,6 +34,7 @@
 				<value>product.hbm.xml</value>
 				<value>user.hbm.xml</value>
 				<value>plan.hbm.xml</value>
+				<value>member.hbm.xml</value>
 			</list>
 		</property>
 

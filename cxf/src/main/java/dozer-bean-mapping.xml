@@ -125,4 +125,29 @@
 		</field>
 	</mapping>	
 	
+	<mapping map-id="member_mapping">
+		<class-a>com.ecomm.dbentity.Member</class-a>
+		<class-b>com.ecomm.wsentity.Member</class-b>
+		<field>
+			<a>memberId</a>
+			<b>memberId</b>
+		</field>
+		<field>
+			<a>userId</a>
+			<b>userId</b>
+		</field>
+		<field>
+			<a>planId</a>
+			<b>planId</b>
+		</field>
+		<field>
+			<a>fromDate</a>
+			<b>fromDate</b>
+		</field>
+		<field>
+			<a>toDate</a>
+			<b>toDate</b>
+		</field>
+	</mapping>	
+	
 </mappings>
