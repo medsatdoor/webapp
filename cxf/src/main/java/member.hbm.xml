@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ecomm.dbentity.Member" table="MEMBER">
+		<id name="memberId" column="MEMBER_ID">
+			<generator class="sequence"/>
+		</id>
+		<property name="userId" column="USER_ID"/>
+		<property name="planId" column="PLAN_ID"/>
+		<property name="fromDate" column="FROM_DATE"/>
+		<property name="toDate" column="TO_DATE"/>
+	</class>
+</hibernate-mapping>  

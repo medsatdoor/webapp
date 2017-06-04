@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.ecomm.dbentity.User" table="USERS">
+		<id name="userId" column="USER_ID">
+			<generator class="sequence"/>
+		</id>
+		<property name="emailAddress" column="EMAIL"/>
+		<property name="mobileNumber" column="MOBILE_NO"/>
+		<property name="password" column="PASSWORD"/>
+		<property name="nameIndex" column="NAME_INDEX"/>
+		<property name="name" column="NAME"/>
+		<property name="type" column="USER_TYPE"/>
+		<property name="balance" column="BALANCE"/>
+		<property name="state" column="ACTIVE_STATE"/>
+		<property name="registeredDate" column="REG_DATE"/>
+	</class>
+</hibernate-mapping>  
