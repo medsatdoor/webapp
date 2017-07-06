@@ -2,14 +2,17 @@ package com.ecomm.ws.services;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+
 import com.ecomm.commonutility.logger.EcommLogger;
 import com.ecomm.dao.ProductDAO;
 import com.ecomm.dao.utils.DatabaseSessionManager;
 import com.ecomm.dao.utils.HibernateProperties;
 import com.ecomm.db.services.ProductDaoServicesImpl;
+import com.ecomm.dbentity.ProductSpecification;
 import com.ecomm.exception.EcommException;
 import com.ecomm.exception.EcommWebException;
 import com.ecomm.ws.utils.EcommResponse;
@@ -29,6 +32,11 @@ public class ProductServicesImpl implements ProductServices {
 	public Response listAllProducts() {
 		try{ 
 			List<com.ecomm.dbentity.Product> dbproductList = productDaoServices.listAllProducts();
+			EcommLogger.info("DB SIZE = "+dbproductList.size());
+			EcommLogger.info("DB SIZE = "+dbproductList);
+			EcommLogger.info("PRODUCT_1 = "+dbproductList.get(0));
+			EcommLogger.info("PRODUCT_1_SPECIFICATION = "+dbproductList.get(0).getProductSpecifications());
+			
 			EcommLogger.info("FROM DAO: "+dbproductList);
 			Products wsproducts = new Products();
 			if(dbproductList!=null && !dbproductList.isEmpty()){
@@ -42,6 +50,7 @@ public class ProductServicesImpl implements ProductServices {
 			throw new EcommWebException(e);
 		}catch(Exception e){
 			e.printStackTrace();
+			EcommLogger.fatal("FAIL: "+e.getMessage());
 			throw new EcommWebException(500, e);
 		}
 	}

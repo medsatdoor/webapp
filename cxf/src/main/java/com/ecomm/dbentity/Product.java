@@ -1,6 +1,7 @@
 package com.ecomm.dbentity;
 
 import java.util.Date;
+import java.util.Map;
 
 public class Product {
 	
@@ -18,13 +19,14 @@ public class Product {
 	private String color;
 	private int packOf;
 	private String material;
+	private Map productSpecifications;
 
 	public Product() {
 		// Required for serialization
 	}
 
 	// constructor with not null fields of database
-	public Product(String id, String name, String type, String subtype, float price, Date deliveryTime, int stock) {
+	public Product(String name, String type, String subtype, float price, Date deliveryTime, int stock) {
 		this.id = id;
 		this.name = name;
 		this.type = type;
@@ -145,5 +147,13 @@ public class Product {
 	public void setMaterial(String material) {
 		this.material = material;
 	}
-	
+
+	public Map getProductSpecifications() {
+		return productSpecifications;
+	}
+
+	public void setProductSpecifications(Map productSpecifications) {
+		this.productSpecifications = productSpecifications;
+	}
+
 }

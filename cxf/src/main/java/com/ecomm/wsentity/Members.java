@@ -16,7 +16,7 @@ public class Members {
 	private List<Member> memberList; 
 	
 	public Members(){
-    	this.planList = new ArrayList<Member>();
+    	this.memberList = new ArrayList<Member>();
     }
 	
 	public Members(List<Member> memberList){

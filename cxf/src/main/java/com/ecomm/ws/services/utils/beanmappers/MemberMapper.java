@@ -3,7 +3,6 @@ package com.ecomm.ws.services.utils.beanmappers;
 import java.util.List;
 
 import com.ecomm.wsentity.Members;
-import com.ecomm.wsentity.Plans;
 
 public class MemberMapper {
 
@@ -27,7 +26,7 @@ public class MemberMapper {
 			for (com.ecomm.dbentity.Member dbmember : dbmemberList) {
 				com.ecomm.wsentity.Member wsmember = new com.ecomm.wsentity.Member();
 				DozerMapper.getBeanMapper().map(dbmember, wsmember, MemberMapper.MAP_ID);
-				wsmembers.addPlan(wsmember);
+				wsmembers.addMember(wsmember);
 			}
 		}	
 		return wsmembers;

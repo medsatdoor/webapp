@@ -61,7 +61,13 @@
 			<a>material</a>
 			<b>material</b>
 		</field>
+		<field-exclude>
+			<a>productSpecifications</a>
+			<b>productSpecifications</b>
+		</field-exclude>
 	</mapping>
+
+
 
 	<mapping map-id="user_mapping">
 		<class-a>com.ecomm.dbentity.User</class-a>
@@ -123,8 +129,8 @@
 			<a>description</a>
 			<b>description</b>
 		</field>
-	</mapping>	
-	
+	</mapping>
+
 	<mapping map-id="member_mapping">
 		<class-a>com.ecomm.dbentity.Member</class-a>
 		<class-b>com.ecomm.wsentity.Member</class-b>
@@ -148,6 +154,6 @@
 			<a>toDate</a>
 			<b>toDate</b>
 		</field>
-	</mapping>	
-	
+	</mapping>
+
 </mappings>

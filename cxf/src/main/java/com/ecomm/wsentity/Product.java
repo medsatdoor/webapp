@@ -1,6 +1,8 @@
 package com.ecomm.wsentity;
 
 import java.util.Date;
+import java.util.Map;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -22,6 +24,7 @@ public class Product {
 	private String color;
 	private int packOf;
 	private String material;
+	private Map productSpecifications;
 
 	public Product() {
 		// Required for serialization
@@ -149,6 +152,14 @@ public class Product {
 
 	public void setMaterial(String material) {
 		this.material = material;
+	}
+	
+	public Map getProductSpecifications() {
+		return productSpecifications;
+	}
+
+	public void setProductSpecifications(Map productSpecifications) {
+		this.productSpecifications = productSpecifications;
 	}
 
 }

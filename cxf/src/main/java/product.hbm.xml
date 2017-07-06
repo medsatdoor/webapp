@@ -4,22 +4,38 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.ecomm.dbentity.Product" table="PRODUCT">
+
+	<class name="com.ecomm.dbentity.Product" table="PRODUCT">	
 		<id name="id" column="PRODUCT_ID">
-			<generator class="sequence"/>
+			<generator class="sequence" />
 		</id>
-		<property name="name" column="NAME"/>
-		<property name="type" column="TYPE"/>
-		<property name="subtype" column="SUBTYPE"/>
-		<property name="price" column="PRICE"/>
-		<property name="company" column="COMPANY"/>
-		<property name="discount" column="DISCOUNT"/>
-		<property name="rating" column="RATING"/>
-		<property name="warranty" column="WARRANTY"/>
-		<property name="stock" column="STOCK"/>
-		<property name="deliveryTime" column="DELIVERY_TIME"/>
-		<property name="color" column="COLOR"/>
-		<property name="packOf" column="PACK_OF"/>
-		<property name="material" column="MATERIAL"/>
+		<property name="name" column="NAME" />
+		<property name="type" column="TYPE" />
+		<property name="subtype" column="SUBTYPE" />
+		<property name="price" column="PRICE" />
+		<property name="company" column="COMPANY" />
+		<property name="discount" column="DISCOUNT" />
+		<property name="rating" column="RATING" />
+		<property name="warranty" column="WARRANTY" />
+		<property name="stock" column="STOCK" />
+		<property name="deliveryTime" column="DELIVERY_TIME" />
+		<property name="color" column="COLOR" />
+		<property name="packOf" column="PACK_OF" />
+		<property name="material" column="MATERIAL" />
+		
+ 		<!-- https://www.tutorialspoint.com/hibernate/hibernate_map_mapping.htm -->
+ 		<map name="productSpecifications" cascade="all" fetch="join" lazy="false">
+ 			<key column="PRODUCT_ID"/><!-- foreign key constraint default null -->
+ 			<index column="PROPERTY" type="string"/><!-- key of map -->
+ 			<one-to-many class="com.ecomm.dbentity.ProductSpecification" />
+ 		</map>
 	</class>
-</hibernate-mapping>  
+	
+	<class name="com.ecomm.dbentity.ProductSpecification" table="PRODUCT_SPECIFICATION">
+		<id name="productSpecificationId" type="int" column="SPECIFICATION_ID">
+			<generator class="native"/>
+		</id>
+		<property name="value" column="VALUE"/>
+	</class>
+	
+</hibernate-mapping>    
