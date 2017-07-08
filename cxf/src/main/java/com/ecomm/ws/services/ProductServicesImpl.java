@@ -36,6 +36,7 @@ public class ProductServicesImpl implements ProductServices {
 			EcommLogger.info("DB SIZE = "+dbproductList);
 			EcommLogger.info("PRODUCT_1 = "+dbproductList.get(0));
 			EcommLogger.info("PRODUCT_1_SPECIFICATION = "+dbproductList.get(0).getProductSpecifications());
+			EcommLogger.info("PRODUCT_1_IMAGE_URLS = "+dbproductList.get(2).getProductImageUrls());
 			
 			EcommLogger.info("FROM DAO: "+dbproductList);
 			Products wsproducts = new Products();
@@ -80,6 +81,7 @@ public class ProductServicesImpl implements ProductServices {
 			throw new EcommWebException(400, "INVALID PRODUCT ID: is system generated should be null");
 		}
 		try{
+			EcommLogger.info("WSPRODUCT IMAGE URL: = "+wsproduct.getProductImageUrls());
 			com.ecomm.dbentity.Product dbproduct = productDaoServices.addProduct(ProductMapper.mapWsToDb(wsproduct));
 			com.ecomm.wsentity.Product wsCreatedProduct = ProductMapper.mapDbToWs(dbproduct);
 			return EcommResponse.getResponseCreated(wsCreatedProduct, uriInfo);

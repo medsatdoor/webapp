@@ -2,6 +2,7 @@ package com.ecomm.wsentity;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -24,6 +25,7 @@ public class Product {
 	private String color;
 	private int packOf;
 	private String material;
+	private Set productImageUrls;
 	private Map productSpecifications;
 
 	public Product() {
@@ -162,4 +164,11 @@ public class Product {
 		this.productSpecifications = productSpecifications;
 	}
 
+	public Set<String> getProductImageUrls() {
+		return productImageUrls;
+	}
+
+	public void setProductImageUrls(Set<String> productImageUrls) {
+		this.productImageUrls = productImageUrls;
+	}
 }

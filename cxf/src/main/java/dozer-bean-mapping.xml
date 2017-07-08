@@ -61,6 +61,10 @@
 			<a>material</a>
 			<b>material</b>
 		</field>
+		<field>
+			<a>productImageUrls</a>
+			<b>productImageUrls</b>
+		</field>
 		<field-exclude>
 			<a>productSpecifications</a>
 			<b>productSpecifications</b>

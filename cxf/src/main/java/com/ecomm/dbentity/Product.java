@@ -2,6 +2,7 @@ package com.ecomm.dbentity;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.Set;
 
 public class Product {
 	
@@ -19,6 +20,7 @@ public class Product {
 	private String color;
 	private int packOf;
 	private String material;
+	private Set productImageUrls;
 	private Map productSpecifications;
 
 	public Product() {
@@ -26,7 +28,8 @@ public class Product {
 	}
 
 	// constructor with not null fields of database
-	public Product(String name, String type, String subtype, float price, Date deliveryTime, int stock) {
+	public Product(String name, String type, String subtype, float price,
+			Date deliveryTime, int stock, Set<String> productImageUrls) {
 		this.id = id;
 		this.name = name;
 		this.type = type;
@@ -34,6 +37,7 @@ public class Product {
 		this.price = price;
 		this.stock = stock;
 		this.deliveryTime = deliveryTime;
+		this.productImageUrls = productImageUrls;
 	}
 
 	public String getId() {
@@ -156,4 +160,11 @@ public class Product {
 		this.productSpecifications = productSpecifications;
 	}
 
+	public Set<String> getProductImageUrls() {
+		return productImageUrls;
+	}
+
+	public void setProductImageUrls(Set<String> productImageUrls) {
+		this.productImageUrls = productImageUrls;
+	}
 }

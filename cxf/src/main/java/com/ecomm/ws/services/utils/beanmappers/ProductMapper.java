@@ -1,11 +1,13 @@
 package com.ecomm.ws.services.utils.beanmappers;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import com.ecomm.commonutility.logger.EcommLogger;
 import com.ecomm.dbentity.Product;
+import com.ecomm.dbentity.ProductImageUrls;
 import com.ecomm.dbentity.ProductSpecification;
 
 public class ProductMapper {
@@ -16,6 +18,7 @@ public class ProductMapper {
 		com.ecomm.dbentity.Product dbproduct = new com.ecomm.dbentity.Product();
 		DozerMapper.getBeanMapper().map(wsproduct, dbproduct, ProductMapper.MAP_ID);
 		dbproduct.setProductSpecifications(ProductMapper.getWsProductSpecificationsToDb(wsproduct));
+		dbproduct.setProductImageUrls(ProductMapper.getWsProductImageUrlsToDb(wsproduct));
 		return dbproduct;
 	}
 
@@ -27,6 +30,16 @@ public class ProductMapper {
 	}
 
 
+	// get Set<ProductImageUrls@Object> for dbproducts
+	private static Set getWsProductImageUrlsToDb(com.ecomm.wsentity.Product wsproduct) {
+		Set<String> imageUrls = wsproduct.getProductImageUrls();
+		Set<ProductImageUrls> imageUrlObjects = new HashSet<ProductImageUrls>();
+		for(String url : imageUrls){
+			imageUrlObjects.add(new ProductImageUrls(url));
+		}
+		return imageUrlObjects;
+	}
+	
 	// get Map<p, ProductSpecification@Object> for dbproducts
 	private static Map getWsProductSpecificationsToDb(com.ecomm.wsentity.Product wsproduct) {
 		Map<String, ProductSpecification> dbproductSpecifications = new HashMap<String, ProductSpecification>();

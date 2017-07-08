@@ -23,12 +23,19 @@
 		<property name="packOf" column="PACK_OF" />
 		<property name="material" column="MATERIAL" />
 		
- 		<!-- https://www.tutorialspoint.com/hibernate/hibernate_map_mapping.htm -->
+ 		<!-- PRODUCT SPECIFICATION MAP: https://www.tutorialspoint.com/hibernate/hibernate_map_mapping.htm -->
  		<map name="productSpecifications" cascade="all" fetch="join" lazy="false">
  			<key column="PRODUCT_ID"/><!-- foreign key constraint default null -->
  			<index column="PROPERTY" type="string"/><!-- key of map -->
  			<one-to-many class="com.ecomm.dbentity.ProductSpecification" />
  		</map>
+ 		
+ 		<!-- PRODUCT IMAGE MAP: https://www.tutorialspoint.com/hibernate/hibernate_set_mapping.htm -->
+ 		<set name="productImageUrls" cascade="all" fetch="join" lazy="false">
+         	<key column="PRODUCT_ID"/>
+         	<one-to-many class="com.ecomm.dbentity.ProductImageUrls"/>
+      	</set>
+      	
 	</class>
 	
 	<class name="com.ecomm.dbentity.ProductSpecification" table="PRODUCT_SPECIFICATION">
@@ -37,5 +44,15 @@
 		</id>
 		<property name="value" column="VALUE"/>
 	</class>
+	
+	<class name="com.ecomm.dbentity.ProductImageUrls" table="PRODUCT_IMAGES">
+    	<meta attribute="class-description">
+        	This class contains the image urls of the prducts 
+      	</meta>
+      	<id name="imageId" type="int" column="ID">
+        	<generator class="native"/>
+      	</id>
+      	<property name="productImageUrl" column="URL" type="string"/>
+   </class>
 	
 </hibernate-mapping>    
