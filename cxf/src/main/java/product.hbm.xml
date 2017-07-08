@@ -30,7 +30,7 @@
  			<one-to-many class="com.ecomm.dbentity.ProductSpecification" />
  		</map>
  		
- 		<!-- PRODUCT IMAGE MAP: https://www.tutorialspoint.com/hibernate/hibernate_set_mapping.htm -->
+ 		<!-- PRODUCT IMAGE SET: https://www.tutorialspoint.com/hibernate/hibernate_set_mapping.htm -->
  		<set name="productImageUrls" cascade="all" fetch="join" lazy="false">
          	<key column="PRODUCT_ID"/>
          	<one-to-many class="com.ecomm.dbentity.ProductImageUrls"/>
@@ -53,6 +53,6 @@
         	<generator class="native"/>
       	</id>
       	<property name="productImageUrl" column="URL" type="string"/>
-   </class>
+   	</class>
 	
 </hibernate-mapping>    
