@@ -1,11 +1,19 @@
 package com.ecomm.ws.services;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+
+import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 
 import com.ecomm.commonutility.logger.EcommLogger;
 import com.ecomm.dao.ProductDAO;
@@ -20,6 +28,9 @@ import com.ecomm.wsentity.Product;
 import com.ecomm.wsentity.Products;
 import com.ecomm.ws.services.utils.beanmappers.ProductMapper;
 
+import org.apache.cxf.jaxrs.ext.multipart.Attachment;
+
+import javax.activation.DataHandler;
 
 public class ProductServicesImpl implements ProductServices {
 
@@ -172,5 +183,46 @@ public class ProductServicesImpl implements ProductServices {
 			throw new EcommWebException(500, e);
 		}
 	}
+
+	// https://bigdatanerd.wordpress.com/2012/03/11/rest-based-file-upload-using-apache-cxf-and-spring/
+	public Response addProductImages(List<Attachment> attachmentList, HttpServletRequest request) {
+		EcommLogger.info("Attatchment list = "+attachmentList);
+		for(Attachment attachment : attachmentList) {
+            DataHandler handler = attachment.getDataHandler();
+            try {
+                InputStream stream = handler.getInputStream();
+                MultivaluedMap map = attachment.getHeaders();
+                String fileName = getFileNameOfUploadedFileAttachment(map);
+                String outputFileName = "F:\\\\uploader\\\\"+getFileNameOfUploadedFileAttachment(map);
+                EcommLogger.info("FILE NAME OF OUTPUT FILE + "+outputFileName);
+                OutputStream out = new FileOutputStream(new File(outputFileName));
+ 
+                int read = 0;
+                byte[] bytes = new byte[1024];
+                while ((read = stream.read(bytes)) != -1) {
+                    out.write(bytes, 0, read);
+                }
+                stream.close();
+                out.flush();
+                out.close();
+            }catch(Exception e) {
+            	e.printStackTrace();
+            }
+        }
+		return null;
+	}
+
+	private String getFileNameOfUploadedFileAttachment(MultivaluedMap<String, String> header) {
+		String[] contentDisposition = header.getFirst("Content-Disposition").split(";");
+        for (String filename : contentDisposition){
+            if ((filename.trim().startsWith("filename"))){
+                String[] name = filename.split("=");
+                String finalFileName = name[1].trim().replaceAll("\"", "");
+                return finalFileName;
+            }
+        }
+         return "unknown";
+	}
+
 
 }

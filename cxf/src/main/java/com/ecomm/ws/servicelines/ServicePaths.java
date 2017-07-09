@@ -7,6 +7,7 @@ public interface ServicePaths {
 	String LIST_ALL_PRODUCTS 		= 	"/products";
 	String LIST_PRODUCT_BY_ID 		= 	"/products/{id}";
 	String ADD_PRODUCT 				= 	"/products_any";
+	String ADD_PRODUCT_IMAGES		= 	"/products/image/upload";
 	String UPDATE_PRODUCT 			= 	"/products";
 	String DELETE_PRODUCT 			= 	"/products";
 	String DELETE_PRODUCT_BY_ID 	= 	"/products/{id}";

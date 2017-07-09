@@ -2,8 +2,10 @@ package com.ecomm.ws.services;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -14,7 +16,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-
+import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import com.ecomm.exception.EcommException;
 import com.ecomm.ws.servicelines.ServicePaths;
 import com.ecomm.wsentity.Product;
@@ -41,6 +43,11 @@ public interface ProductServices {
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response addProduct(Product product, @Context UriInfo uriInfo);
+	
+	@POST
+	@Path(ServicePaths.ADD_PRODUCT_IMAGES)
+	@Consumes({MediaType.MULTIPART_FORM_DATA})
+	public Response addProductImages(List<Attachment> attachments, @Context HttpServletRequest request);
 	
 	@PUT
 	@Path(ServicePaths.UPDATE_PRODUCT)

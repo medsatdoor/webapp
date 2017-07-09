@@ -32,9 +32,9 @@
  		
  		<!-- PRODUCT IMAGE SET: https://www.tutorialspoint.com/hibernate/hibernate_set_mapping.htm -->
  		<set name="productImageUrls" cascade="all" fetch="join" lazy="false">
-         	<key column="PRODUCT_ID"/>
-         	<one-to-many class="com.ecomm.dbentity.ProductImageUrls"/>
-      	</set>
+			<key column="PRODUCT_ID"/>
+			<one-to-many class="com.ecomm.dbentity.ProductImageUrls"/>
+		</set>
       	
 	</class>
 	
