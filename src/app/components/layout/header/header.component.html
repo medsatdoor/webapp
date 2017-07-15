@@ -1,0 +1,10 @@
+<app-user-location (userLoc)="userSelectedLoc($event)"></app-user-location>
+<mz-navbar>
+  <a href="#" class="brand-logo">Logo</a>
+  <mz-navbar-item-container [align]="'right'">
+    <mz-navbar-item><a href="#">{{userLoc}}</a></mz-navbar-item>
+    <mz-navbar-item><a [routerLink]="['/auth', 'login']">Login/SignUp</a></mz-navbar-item>
+    <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
+  </mz-navbar-item-container>
+</mz-navbar>
+<app-loading-indicator></app-loading-indicator>

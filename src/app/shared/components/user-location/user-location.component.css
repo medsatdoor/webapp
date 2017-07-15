@@ -1,0 +1,181 @@
+@font-face {
+    font-family: Trench;
+    src: url(./assets/fonts/trench/trench100free.otf);
+}
+
+.locationContainer { 
+  perspective: 1000px; 
+
+}
+#card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+#card .front {
+	background-color: rgba(255, 255, 255, .75);
+	border-radius: 0 0 25px 25px;
+  width: 400px;
+  height: 360px;
+  position: relative;
+  backface-visibility: hidden;
+  margin: 0 auto;
+  transform-origin: center top;
+  z-index: 1000;
+}
+
+.locImg {
+  display: block;
+  position: absolute;
+  left: 40%;
+  top: 20%;
+  width: 150px;
+  height: 140px;
+  z-index: 1001;
+}
+
+.locImg img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: -35px 0 0 -40px;
+}
+
+.locHead {
+	position: absolute;
+	bottom: 130px;
+	width: 100%;
+}
+
+.locHead .text {
+	position: relative;
+	width: 345px;
+	margin: auto;
+	font-family: Trench;
+	font-size: 25px;
+	font-weight: bolder;
+}
+
+.front input {
+	position: absolute;
+	bottom: 40px;
+	left: 20px;
+	float: left;
+	width: 230px; 
+}
+
+.ng2complete {
+  position: absolute;
+  bottom: 59px;
+  left: 20px;
+  float: left;
+  width: 63%;
+}
+
+.ng2-completer {
+  position: absolute;
+  width: 250px;
+  margin-left: -12px;
+  bottom: -20px;
+}
+
+.form-control {
+  display: block;
+  height: 48px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.form-control::-moz-placeholder {
+  color: #999;
+  opacity: 1;
+}
+.form-control:-ms-input-placeholder {
+  color: #999;
+}
+.form-control::-webkit-input-placeholder {
+  color: #999;
+}
+.form-control::-ms-expand {
+  background-color: transparent;
+  border: 0;
+}
+
+.input-group-btn button {
+	position: absolute;
+	bottom: 62px;
+	float: right;
+	right: 20px;
+	height: 45px;
+}
+
+.locationSwingOpen {
+	animation: swingOpen 1s ease-in-out;
+}
+
+.locationSwingClose {
+	animation: swingClose .5s ease-in-out;
+	transform: rotateX(90deg);
+}
+
+.mask {
+	width: 100%;
+	height: 678px;
+	position: fixed;
+	background-color: rgba(0, 0, 0, .45);
+	transition: background-color 1s ease-in-out;
+}
+
+.clearMask {
+	opacity:0;
+	transition: opacity 2s linear;
+}
+
+@-webkit-keyframes swingOpen {
+	from {-webkit-transform:rotateX(90deg)}
+    to {-webkit-transform:rotateX(0deg)}
+}
+
+@-moz-keyframes swingOpen {
+	from {-moz-transform:rotateX(90deg)}
+    to {-moz-transform:rotateX(0deg)}
+}
+
+@keyframes swingOpen {
+	from {transform: rotateX(90deg)}
+    to {transform: rotateX(0deg)}
+}
+
+@-webkit-keyframes swingClose {
+	from {-webkit-transform:rotateX(0deg)}
+    to {-webkit-transform:rotateX(90deg)}
+}
+
+@-moz-keyframes swingClose {
+	from {-moz-transform:rotateX(0deg)}
+    to {-moz-transform:rotateX(90deg)}
+}
+
+@keyframes swingClose {
+	from {transform: rotateX(0deg)}
+    to {transform: rotateX(90deg)}
+}
