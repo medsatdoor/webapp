@@ -221,8 +221,6 @@ public class ProductServicesImpl implements ProductServices {
                 return finalFileName;
             }
         }
-         return "unknown";
+        return "unknown";
 	}
-
-
 }

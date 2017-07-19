@@ -16,13 +16,18 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
+
 import com.ecomm.exception.EcommException;
 import com.ecomm.ws.servicelines.ServicePaths;
 import com.ecomm.wsentity.Product;
 import com.ecomm.wsentity.Products;
 
-
+@CrossOriginResourceSharing(
+	allowAllOrigins = true
+)
 @Path(ServicePaths.PRODUCT_SERVICE_BASE_URI)
 public interface ProductServices {
 
